@@ -1,6 +1,7 @@
 package com.brunobat.model;
 
 /**
+ *
  * Created by Bruno Baptista on 08/03/15.
  */
 public class FinancialTransaction {
