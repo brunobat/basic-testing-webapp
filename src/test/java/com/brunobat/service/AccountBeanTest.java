@@ -4,6 +4,9 @@ import com.brunobat.model.FinancialTransaction;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
+import org.jboss.shrinkwrap.api.asset.EmptyAsset;
+import org.jboss.shrinkwrap.api.spec.JavaArchive;
+
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Before;
@@ -23,6 +26,10 @@ public class AccountBeanTest {
     public static WebArchive createDeployment() {
         return ShrinkWrap.createFromZipFile(WebArchive.class, new File(
                 "target/basicWebapp.war"));
+//        return ShrinkWrap.create(JavaArchive.class,"basicWebapp.war")
+//                .addClass(AccountService.class)
+//                .addClass(FinancialTransaction.class)
+//                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Before
