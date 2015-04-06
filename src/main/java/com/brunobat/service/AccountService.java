@@ -23,14 +23,17 @@ public class AccountService implements Serializable {
     private HashMap<String, Float> accountAmountPairs = new HashMap<String, Float>();
 
 
-    public FinancialTransaction deposit(FinancialTransaction transaction) {
+    public FinancialTransaction deposit(final FinancialTransaction transaction) {
 
         float theSum = 0;
         if (accountAmountPairs.containsKey(transaction.getName())) {
-            theSum = accountAmountPairs.get(transaction.getName()).floatValue() + transaction.getAmount();
+            theSum = accountAmountPairs.get(transaction.getName()) + transaction.getAmount();
+        }else {
+            theSum = transaction.getAmount();
         }
-        accountAmountPairs.put(transaction.getName(), Float.valueOf(theSum));
-        transaction.setMsg("The money have been deposited to " + transaction.getName() + ", the balance of the account is " + theSum);
+        accountAmountPairs.put(transaction.getName(), theSum);
+        transaction.setMsg("The money have been deposited to " + transaction.getName() +
+                ", the balance of the account is " + accountAmountPairs.get(transaction.getName()));
         return transaction;
     }
 }
