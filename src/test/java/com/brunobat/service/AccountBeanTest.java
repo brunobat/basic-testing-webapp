@@ -24,12 +24,12 @@ public class AccountBeanTest {
 
     @Deployment
     public static WebArchive createDeployment() {
-        return ShrinkWrap.createFromZipFile(WebArchive.class, new File(
-                "target/basicWebapp.war"));
-//        return ShrinkWrap.create(JavaArchive.class,"basicWebapp.war")
-//                .addClass(AccountService.class)
-//                .addClass(FinancialTransaction.class)
-//                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
+//        return ShrinkWrap.createFromZipFile(WebArchive.class, new File(
+//                "target/basicWebapp.war"));
+        return ShrinkWrap.create(WebArchive.class, "basicWebapp.war")
+                .addClass(AccountService.class)
+                .addClass(FinancialTransaction.class)
+                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 
     @Before
@@ -42,8 +42,8 @@ public class AccountBeanTest {
         final FinancialTransaction transaction = new FinancialTransaction();
         transaction.setAmount(10.20f);
         transaction.setName("Bruno");
-        final FinancialTransaction deposit = accountBean.deposit(transaction);
 
+        final FinancialTransaction deposit = accountBean.deposit(transaction);
         Assert.assertEquals(transaction.getAmount(), deposit.getAmount());
         Assert.assertEquals(transaction.getName(), deposit.getName());
         Assert.assertEquals(
