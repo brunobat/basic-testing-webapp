@@ -18,6 +18,5 @@
       <property name="modulePath">target/wildfly-8.1.0.Final/modules</property>
     </configuration>
   </container>
-  <container qualifier="arquillian-wildfly-remote"/>
-  <container qualifier="arquillian-wls-remote-10.3"/>
+  <container default="false" qualifier="arquillian-wildfly-remote"/>
 </arquillian>
