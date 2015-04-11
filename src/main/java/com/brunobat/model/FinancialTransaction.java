@@ -1,23 +1,29 @@
 package com.brunobat.model;
 
+import com.brunobat.model.base.BaseEntity;
+
+import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
+
 /**
- *
  * Created by Bruno Baptista on 08/03/15.
  */
-public class FinancialTransaction {
+@Entity
+public class FinancialTransaction extends BaseEntity {
 
-    private String name;
+    @ManyToOne
+    private Owner owner;
 
     private Float amount;
 
     private String msg;
 
-    public String getName() {
-        return name;
+    public Owner getOwner() {
+        return owner;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setOwner(Owner owner) {
+        this.owner = owner;
     }
 
     public Float getAmount() {
@@ -38,10 +44,9 @@ public class FinancialTransaction {
 
     @Override
     public String toString() {
-        return "Account{" +
-                "name='" + name + '\'' +
-                ", amount=" + amount +
+        return "FinancialTransaction{" +
+                "amount=" + amount +
                 ", msg='" + msg + '\'' +
-                '}';
+                "} " + super.toString();
     }
 }
