@@ -12,7 +12,7 @@ import javax.enterprise.inject.Typed;
 /**
  * Created by Bruno Baptista on 09/04/15.
  */
-@Stateless
+@Stateless//todo use CDI
 @LocalBean
 @Typed(OwnerJPARepository.class)
 @TransactionAttribute(TransactionAttributeType.REQUIRED)
@@ -21,6 +21,5 @@ public class OwnerJPARepository extends JPARepository<Owner> {
     public OwnerJPARepository() {
         super(Owner.class);
     }
-
 
 }

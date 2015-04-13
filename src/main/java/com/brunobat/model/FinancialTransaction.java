@@ -18,6 +18,13 @@ public class FinancialTransaction extends BaseEntity {
 
     private String msg;
 
+    public FinancialTransaction() {
+    }
+
+    public FinancialTransaction(String id) {
+        super(id);
+    }
+
     public Owner getOwner() {
         return owner;
     }

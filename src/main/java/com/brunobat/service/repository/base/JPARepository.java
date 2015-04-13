@@ -4,13 +4,14 @@ import com.brunobat.model.base.Identifiable;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import java.io.Serializable;
 
 /**
  * Created by Bruno Baptista on 09/04/15.
  */
-public abstract class JPARepository <T extends Identifiable> implements Repository<T> {
+public abstract class JPARepository <T extends Identifiable> implements Repository<T>, Serializable {
 
-    //@PersistenceContext
+    @PersistenceContext
     private EntityManager manager;
 
     private Class<T> type;

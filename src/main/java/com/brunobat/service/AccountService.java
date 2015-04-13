@@ -10,6 +10,8 @@ import com.brunobat.service.repository.OwnerJPARepository;
 import com.brunobat.service.repository.OwnerSimpleRepository;
 import com.brunobat.service.repository.base.Repository;
 
+import javax.ejb.TransactionAttribute;
+import javax.ejb.TransactionAttributeType;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -22,13 +24,14 @@ import java.util.HashMap;
  */
 @Named
 @SessionScoped
+@TransactionAttribute(TransactionAttributeType.REQUIRED)
 public class AccountService implements Serializable {
 
-    @Inject
-    protected OwnerSimpleRepository repository;
-//
 //    @Inject
-//    protected OwnerJPARepository repository;
+//    protected OwnerSimpleRepository repository;
+
+    @Inject
+    protected OwnerJPARepository repository;
 
     public FinancialTransaction deposit(final FinancialTransaction transaction) {
 
@@ -39,13 +42,18 @@ public class AccountService implements Serializable {
             return null;
         }
 
-        float theSum = 0;
         Owner owner = repository.get(transaction.getOwner().getId());
 
+        if(owner == null){
+            owner = repository.store(transaction.getOwner());
+        }
+
         if (owner != null) {
-            transaction.setOwner(owner);
+
             owner.setCurrentAmount(owner.getCurrentAmount() + transaction.getAmount());
             owner.getFinancialTransactions().add(transaction);
+            transaction.setOwner(owner);
+            repository.store(owner);
         }
         return transaction;
     }

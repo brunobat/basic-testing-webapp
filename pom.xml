@@ -11,6 +11,7 @@
     <properties>
         <version.junit>4.12</version.junit>
         <version.arquillian_core>1.1.7.Final</version.arquillian_core>
+        <version.arquillian_persistence>1.0.0.Alpha6</version.arquillian_persistence>
     </properties>
     <dependencyManagement>
         <dependencies>
@@ -20,6 +21,12 @@
                 <version>${version.arquillian_core}</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.jboss.arquillian.extension</groupId>
+                <artifactId>arquillian-persistence-impl</artifactId>
+                <version>${version.arquillian_persistence}</version>
+                <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec</groupId>
@@ -46,6 +53,16 @@
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>
             <artifactId>arquillian-junit-container</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.arquillian.extension</groupId>
+            <artifactId>arquillian-persistence-impl</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.jboss.shrinkwrap.descriptors</groupId>
+            <artifactId>shrinkwrap-descriptors-impl-javaee</artifactId>
             <scope>test</scope>
         </dependency>
         <dependency>

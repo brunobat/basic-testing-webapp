@@ -2,19 +2,23 @@ package com.brunobat.model;
 
 import com.brunobat.model.base.BaseEntity;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 import java.util.List;
 
 /**
  * Created by Bruno Baptista on 09/04/15.
  */
+@Entity//TODO case 1
 public class Owner extends BaseEntity {
 
     private String name;
 
     private Float currentAmount;
 
-    @OneToMany
+    @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<FinancialTransaction> financialTransactions;
 
     public Owner() {
