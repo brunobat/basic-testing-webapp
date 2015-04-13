@@ -3,14 +3,11 @@ package com.brunobat.service;
 import com.brunobat.model.FinancialTransaction;
 import com.brunobat.model.Owner;
 import com.brunobat.service.repository.OwnerJPARepository;
-import com.brunobat.service.repository.OwnerSimpleRepository;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.arquillian.persistence.core.configuration.PersistenceDescriptorExtractor;
 import org.jboss.shrinkwrap.api.ArchivePaths;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
-import org.jboss.shrinkwrap.api.asset.StringAsset;
 import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.jboss.shrinkwrap.descriptor.api.Descriptors;
 import org.jboss.shrinkwrap.descriptor.api.persistence10.PersistenceDescriptor;
@@ -21,10 +18,9 @@ import org.junit.runner.RunWith;
 
 import javax.inject.Inject;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
 @RunWith(Arquillian.class)
-public class AccountBeanIntegrationTest {
+public class AccountServiceIntegrationTest {
 
     //todo add logs
 
@@ -77,7 +73,7 @@ public class AccountBeanIntegrationTest {
      */
     @Before
     public void setUp() throws Exception {
-        repository.store(createOwner());
+        repository.store(createOwner("owner1"));
     }
 
     @Test
@@ -96,8 +92,15 @@ public class AccountBeanIntegrationTest {
         Assert.assertTrue(1 == ownerFromRepo.getFinancialTransactions().size());       // transaction was added.
     }
 
-    private Owner createOwner() {
-        final Owner owner = new Owner("owner1");
+    @Test
+    public void testGetOwner(){
+        final Owner owner = accountBean.getOwner("owner1");
+        Assert.assertNotNull(owner);
+        Assert.assertEquals(Float.valueOf(100f), owner.getCurrentAmount());
+    }
+
+    private Owner createOwner(String ownerId) {
+        final Owner owner = new Owner(ownerId);
         owner.setCurrentAmount(100f);
         owner.setName(AFONSO);
         owner.setFinancialTransactions(new ArrayList<FinancialTransaction>());

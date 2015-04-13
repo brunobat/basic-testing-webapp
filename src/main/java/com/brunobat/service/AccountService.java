@@ -57,4 +57,8 @@ public class AccountService implements Serializable {
         }
         return transaction;
     }
+
+    public Owner getOwner(String ownerId){
+        return repository.get(ownerId);
+    }
 }
