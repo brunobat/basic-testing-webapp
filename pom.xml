@@ -54,12 +54,12 @@
             <!--<type>pom</type>-->
             <!--<scope>import</scope>-->
             <!--</dependency>-->
-            <dependency>
-                <groupId>org.hibernate.javax.persistence</groupId>
-                <artifactId>hibernate-jpa-2.1-api</artifactId>
-                <version>1.0.0.Draft-16</version>
-                <scope>provided</scope>
-            </dependency>
+            <!--<dependency>-->
+                <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+                <!--<artifactId>hibernate-jpa-2.0-api</artifactId>-->
+                <!--<version>1.0.1.Final</version>-->
+                <!--<scope>provided</scope>-->
+            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
     <dependencies>
@@ -69,10 +69,16 @@
         <!--<version>6.0</version>-->
         <!--<scope>provided</scope>-->
         <!--</dependency>-->
+        <!--<dependency>-->
+            <!--<groupId>org.apache.openejb</groupId>-->
+            <!--<artifactId>javaee-api</artifactId>-->
+            <!--<version>6.0-5</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
-            <groupId>org.apache.openejb</groupId>
+            <groupId>javax</groupId>
             <artifactId>javaee-api</artifactId>
-            <version>6.0-5</version>
+            <version>7.0</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -96,11 +102,11 @@
             <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
-        <dependency>
-            <groupId>org.hibernate.javax.persistence</groupId>
-            <artifactId>hibernate-jpa-2.1-api</artifactId>
-            <scope>provided</scope>
-        </dependency>
+        <!--<dependency>-->
+            <!--<groupId>org.hibernate.javax.persistence</groupId>-->
+            <!--<artifactId>hibernate-jpa-2.0-api</artifactId>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
@@ -311,8 +317,8 @@
                             <systemPropertyVariables>
                                 <javax.el.ExpressionFactory>org.apache.el.ExpressionFactoryImpl
                                 </javax.el.ExpressionFactory>
-                                <arquillian.launch>arquillian-tomee-embedded</arquillian.launch>
-                                <openejb.arquillian.adapter>arquillian-tomee-embedded</openejb.arquillian.adapter>
+                                <!--<arquillian.launch>arquillian-tomee-embedded</arquillian.launch>-->
+                                <!--<openejb.arquillian.adapter>arquillian-tomee-embedded</openejb.arquillian.adapter>-->
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>

@@ -73,11 +73,12 @@ public class AccountServiceIntegrationTest {
      */
     @Before
     public void setUp() throws Exception {
-        repository.store(createOwner("owner1"));
+//        repository.store(createOwner("owner1"));
     }
 
     @Test
     public void testDeposit() throws Exception {
+        repository.store(createOwner("owner1"));
         final Owner owner = new Owner("owner1");
         final FinancialTransaction transaction = new FinancialTransaction("transaction1");
         transaction.setAmount(10.20f);
