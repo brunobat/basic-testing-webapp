@@ -13,21 +13,21 @@
             <property name="target">myserver</property>
         </configuration>
     </container>
-    <container default="true" qualifier="arquillian-wildfly8-managed">
+    <container default="false" qualifier="arquillian-wildfly8-managed">
         <configuration>
             <property name="jbossHome">target/wildfly-8.1.0.Final</property>
             <property name="modulePath">target/wildfly-8.1.0.Final/modules</property>
         </configuration>
     </container>
     <container default="false" qualifier="arquillian-wildfly-remote"/>
-    <container default="false" qualifier="arquillian-tomee-embedded">
-        <configuration>
-            <property name="httpPort">-1</property>
-            <property name="stopPort">-1</property>
-            <property name="ajpPort">-1</property>
-            <property name="dir">target/tomee-remote</property>
-            <property name="appWorkingDir">target/work4</property>
-        </configuration>
+    <container default="true" qualifier="arquillian-tomee-embedded">
+        <!--<configuration>-->
+            <!--<property name="httpPort">-1</property>-->
+            <!--<property name="stopPort">-1</property>-->
+            <!--<property name="ajpPort">-1</property>-->
+            <!--<property name="dir">target/tomee-remote</property>-->
+            <!--<property name="appWorkingDir">target/work4</property>-->
+        <!--</configuration>-->
     </container>
     <container default="false" qualifier="arquillian-tomee-remote" >
         <configuration>
