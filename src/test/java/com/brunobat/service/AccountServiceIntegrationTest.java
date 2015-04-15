@@ -42,7 +42,7 @@ public class AccountServiceIntegrationTest {
                 .addPackages(true, Package.getPackage("com.brunobat.model"))
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
                 .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"));
-        //.addAsResource(new StringAsset(descriptor().exportAsString()), "META-INF/persistence.xml")
+        //.addAsResource(new StringAsset(hibernateDescriptor().exportAsString()), "META-INF/persistence.xml")
 
     }
 
@@ -52,7 +52,7 @@ public class AccountServiceIntegrationTest {
      *
      * @return
      */
-    public static PersistenceDescriptor descriptor() {
+    public static PersistenceDescriptor hibernateDescriptor() {
         return Descriptors.create(PersistenceDescriptor.class)
                 .createPersistenceUnit()
                 .name("basic-testing-webapp-persistence-unit")
@@ -73,7 +73,7 @@ public class AccountServiceIntegrationTest {
      */
     @Before
     public void setUp() throws Exception {
-//        repository.store(createOwner("owner1"));
+        repository.store(createOwner("owner1"));
     }
 
     @Test

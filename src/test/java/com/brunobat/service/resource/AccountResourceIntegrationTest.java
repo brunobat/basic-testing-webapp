@@ -1,4 +1,4 @@
-package com.brunobat.service;
+package com.brunobat.service.resource;
 
 import com.brunobat.model.FinancialTransaction;
 import com.brunobat.model.Owner;
