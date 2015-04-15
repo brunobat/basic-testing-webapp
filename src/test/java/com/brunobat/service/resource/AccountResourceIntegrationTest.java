@@ -2,6 +2,7 @@ package com.brunobat.service.resource;
 
 import com.brunobat.model.FinancialTransaction;
 import com.brunobat.model.Owner;
+import com.brunobat.service.AccountService;
 import com.brunobat.service.repository.OwnerJPARepository;
 import com.brunobat.service.resource.AccountResource;
 import org.jboss.arquillian.container.test.api.Deployment;
@@ -25,44 +26,44 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-
+//@RunAsClient
 @RunWith(Arquillian.class)
 public class AccountResourceIntegrationTest {
 
-//    @Inject
-//    private OwnerJPARepository repository;
+    @Inject
+    private OwnerJPARepository repository;
 
-    @ArquillianResource
-    private URL webappUrl;
+//    @ArquillianResource
+//    private URL webappUrl;
 
-    @Deployment
+    @Deployment()
     public static WebArchive createDeployment() {
                 return ShrinkWrap.createFromZipFile(WebArchive.class, new File(
                 "target/basicWebapp.war"));
 //        return ShrinkWrap.create(WebArchive.class, "basicWebapp.war")
 //                .addClass(AccountService.class)
 //                .addClass(AccountResource.class)
-//                .addPackage(Package.getPackage("com.brunobat.service.repository"))
-//                .addPackage(Package.getPackage("com.brunobat.service.repository.base"))
-//                .addPackages(true, Package.getPackage("com.brunobat.model"))
+//                .addClass(JaxRsActivator.class)
+//                .addPackage(Package.getPackage("com.brunobat.service.repository"));
+//                .addPackage(Package.getPackage("com.brunobat.service.repository.base"));
+//                .addPackages(true, Package.getPackage("com.brunobat.model"));
 //                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 //                .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"));
         //.addAsResource(new StringAsset(descriptor().exportAsString()), "META-INF/persistence.xml")
 
     }
 
-//    /**
-//     * Before each test
-//     *
-//     * @throws Exception
-//     */
-//    @Before
-//    public void setUp() throws Exception {
-//        repository.store(createOwner("owner1"));
-//    }
+    /**
+     * Before each test
+     *
+     * @throws Exception
+     */
+    @Before
+    public void setUp() throws Exception {
+        repository.store(createOwner("owner1"));
+    }
 
     @Test
-    @RunAsClient
     public void testGetOwner(@ArquillianResteasyResource AccountResource accountResource) throws Exception {
         final Response response = accountResource.getOwnerDetail("owner1");
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());

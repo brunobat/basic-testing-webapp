@@ -9,6 +9,7 @@
     <packaging>war</packaging>
     <name>basicWebapp</name>
     <properties>
+        <version.slf4j>1.6.1</version.slf4j>
         <version.junit>4.12</version.junit>
         <version.arquillian_core>1.1.7.Final</version.arquillian_core>
         <version.arquillian_persistence>1.0.0.Alpha6</version.arquillian_persistence>
@@ -54,16 +55,16 @@
             <!--<type>pom</type>-->
             <!--<scope>import</scope>-->
             <!--</dependency>-->
-            <!--<dependency>-->
-                <!--<groupId>org.hibernate.javax.persistence</groupId>-->
-                <!--<artifactId>hibernate-jpa-2.0-api</artifactId>-->
-                <!--<version>1.0.1.Final</version>-->
-                <!--<scope>provided</scope>-->
-            <!--</dependency>-->
         </dependencies>
     </dependencyManagement>
     <dependencies>
-        <!--<dependency>-->
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>${version.slf4j}</version>
+        </dependency>
+
+    <!--<dependency>-->
         <!--<groupId>javax</groupId>-->
         <!--<artifactId>javaee-web-api</artifactId>-->
         <!--<version>6.0</version>-->
@@ -102,11 +103,6 @@
             <version>${version.junit}</version>
             <scope>test</scope>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.hibernate.javax.persistence</groupId>-->
-            <!--<artifactId>hibernate-jpa-2.0-api</artifactId>-->
-            <!--<scope>provided</scope>-->
-        <!--</dependency>-->
         <dependency>
             <groupId>org.jboss.resteasy</groupId>
             <artifactId>resteasy-jackson-provider</artifactId>
@@ -126,9 +122,9 @@
         <!--</dependency>-->
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
-            <artifactId>arquillian-rest-client-impl-jersey</artifactId>
+            <artifactId>arquillian-rest-client-impl-jaxrs-2</artifactId>
             <version>1.0.0.Alpha3</version>
-            <!--<scope>test</scope>-->
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>org.jboss.arquillian.extension</groupId>
@@ -225,7 +221,7 @@
                         <version>2.14.1</version>
                         <configuration>
                             <systemPropertyVariables>
-                                <arquillian.launch>arquillian-wildfly-remote</arquillian.launch>
+                                <arquillian.launch>arquillian-wildfly .setWebXML("WEB-INF/web.xml");-remote</arquillian.launch>
                             </systemPropertyVariables>
                         </configuration>
                     </plugin>
