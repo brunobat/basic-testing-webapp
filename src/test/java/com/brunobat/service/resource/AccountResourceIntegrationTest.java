@@ -58,7 +58,7 @@ public class AccountResourceIntegrationTest {
     private Owner createOwner(String ownerId) {
         final Owner owner = new Owner(ownerId);
         owner.setCurrentAmount(100f);
-        owner.setName("AFONSO");
+        owner.setName("NAME");
         owner.setFinancialTransactions(new ArrayList<FinancialTransaction>());
         return owner;
     }

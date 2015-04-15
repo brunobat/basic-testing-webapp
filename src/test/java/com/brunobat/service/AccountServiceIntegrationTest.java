@@ -24,7 +24,7 @@ public class AccountServiceIntegrationTest {
 
     //todo add logs
 
-    public static final String AFONSO = "Afonso";
+    public static final String NAME = "Afonso";
     @Inject
     private AccountService accountBean;
 
@@ -47,7 +47,7 @@ public class AccountServiceIntegrationTest {
     }
 
     /**
-     * Simulates the persistence.xml configuration file.
+     * Simulates the persistence.xml configuration file.AFONSO
      * Mind that the location of the descriptor changes according to the type of archive.
      *
      * @return
@@ -86,7 +86,7 @@ public class AccountServiceIntegrationTest {
 
         final FinancialTransaction deposit = accountBean.deposit(transaction);
         Assert.assertEquals(transaction.getAmount(), deposit.getAmount()); // amount was kept
-        Assert.assertEquals(AFONSO, transaction.getOwner().getName());     // name was set
+        Assert.assertEquals(NAME, transaction.getOwner().getName());     // name was set
 
         Owner ownerFromRepo = repository.get(owner.getId());
         Assert.assertEquals(Float.valueOf(110.20f), ownerFromRepo.getCurrentAmount()); // current amount was updated
@@ -103,7 +103,7 @@ public class AccountServiceIntegrationTest {
     private Owner createOwner(String ownerId) {
         final Owner owner = new Owner(ownerId);
         owner.setCurrentAmount(100f);
-        owner.setName(AFONSO);
+        owner.setName(NAME);
         owner.setFinancialTransactions(new ArrayList<FinancialTransaction>());
         return owner;
     }
