@@ -26,7 +26,10 @@ import javax.ws.rs.core.Response;
 import java.io.File;
 import java.net.URL;
 import java.util.ArrayList;
-//@RunAsClient
+
+/**
+ * REST client test
+ */
 @RunWith(Arquillian.class)
 public class AccountResourceIntegrationTest {
 
@@ -40,17 +43,6 @@ public class AccountResourceIntegrationTest {
     public static WebArchive createDeployment() {
                 return ShrinkWrap.createFromZipFile(WebArchive.class, new File(
                 "target/basicWebapp.war"));
-//        return ShrinkWrap.create(WebArchive.class, "basicWebapp.war")
-//                .addClass(AccountService.class)
-//                .addClass(AccountResource.class)
-//                .addClass(JaxRsActivator.class)
-//                .addPackage(Package.getPackage("com.brunobat.service.repository"));
-//                .addPackage(Package.getPackage("com.brunobat.service.repository.base"));
-//                .addPackages(true, Package.getPackage("com.brunobat.model"));
-//                .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-//                .addAsResource("META-INF/persistence.xml", ArchivePaths.create("META-INF/persistence.xml"));
-        //.addAsResource(new StringAsset(descriptor().exportAsString()), "META-INF/persistence.xml")
-
     }
 
     /**
@@ -69,7 +61,7 @@ public class AccountResourceIntegrationTest {
         Assert.assertEquals(Response.Status.OK.getStatusCode(), response.getStatus());
         final Owner owner = (Owner) response.getEntity();
         Assert.assertNotNull(owner);
-//        Assert.assertEquals(Float.valueOf(100f), owner.getCurrentAmount());
+        Assert.assertEquals(Float.valueOf(100f), owner.getCurrentAmount());
     }
 
     private Owner createOwner(String ownerId) {
